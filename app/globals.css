@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+
+html {
+    scroll-behavior: smooth;
+}
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #101828;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.slide {
+    display: inline-block;
+    overflow: hidden;
+    height:0.9em;
+    font-size: xxx-large;
+    font-weight: bolder;
+
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    animation: wordSlider 21s infinite ;
+}
+
+
+@keyframes wordSlider {
+    0%{
+        transform: translateY(-0%);
+    }
+    12%{
+        transform: translateY(-34%);
+    }
+    35%{
+        transform: translateY(-67%);
+    }
+
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.2s ease-out;
+}
+.cl-avatarBox {
+    width: 50px;
+    height: 50px;
+}
+/* ROOT WRAPPER */
+.myUserButton_root {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* TRIGGER ELEMENT (container holding avatar + name) */
+.myUserButton_trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    /* THIS puts name on the RIGHT and avatar on the LEFT */
+    flex-direction: row;
+}
+
+/* Avatar stays left */
+.myUserButton_avatarBox,
+.myUserButton_avatarImg {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+/* Name goes right side and is white + bigger */
+.myUserButton_name {
+    order: 2;                     /* FORCE name to be on the right */
+    color: white !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+}
+
+.myUserButton_avatarBox {
+    order: 1;                     /* FORCE avatar to be on the left */
+}
+
+/* Remove outline on click / focus */
+.myUserButton_trigger:focus,
+.myUserButton_trigger:focus-visible,
+.myUserButton_trigger:active {
+    outline: none !important;
+    box-shadow: none !important;   /* removes Clerk ring */
+}
+
+/* Also remove outline from avatar container */
+.myUserButton_avatarBox:focus,
+.myUserButton_avatarImg:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+
+
+
+
+
+@theme {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Space Grotesk", sans-serif;
+
+    --color-bg-dark: #02040a;
+    --color-accent-blue: #3b82f6;
+    --color-accent-purple: #8b5cf6;
+}
+
+@layer base {
+    body {
+        @apply font-sans text-white bg-bg-dark antialiased;
+    }
+}
+
+.hero-gradient {
+    background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 80%);
+}
+
+.hex-grid {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'%3E%3Cpath fill='%233b82f6' fill-opacity='0.1' d='M27.99 18.5l26 15v30l-26 15L1.99 63.5v-30l26-15zM6 35.8l22-12.7 22 12.7v25.4l-22 12.7-22-12.7V35.8z'/%3E%3C/svg%3E");
+    mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+}
+
+.mesh-chain {
+    position: absolute;
+    inset: 0;
+    background:
+            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(0deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(800px) rotateX(65deg) translateY(-200px) scale(2);
+    mask-image: linear-gradient(to bottom, black, transparent 70%);
+    opacity: 0.4;
+}
+
+.glow-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-accent-blue), var(--color-accent-purple), transparent);
+    width: 100%;
+    opacity: 0.4;
+    filter: blur(2px);
+    box-shadow: 0 0 15px var(--color-accent-blue);
+}
+
+.glow-text {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.feature-card {
+    @apply bg-[#0a0c14] border border-white/5 rounded-2xl p-8 transition-all duration-300;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.feature-card:hover {
+    @apply border-accent-blue/30 bg-[#0e111d];
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.1);
+}
+
+.nav-bar-container {
+    @apply mx-6 mt-6 bg-[#0a0c14]/80 backdrop-blur-xl border border-white/5 rounded-2xl px-8 py-4 flex justify-between items-center;
+}
+
+.nav-link {
+    @apply text-[10px] uppercase tracking-[0.2em] font-medium text-white/60 hover:text-white transition-colors;
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    @apply text-[10px] tracking-[0.3em] uppercase font-bold text-white/30;
+}
+
+.glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 transition-all hover:bg-white/10;
+}
+
+.line-divider {
+    @apply h-[1px] bg-white/20 w-full;
+}
+
+.accent-line {
+    @apply h-[2px] bg-accent-blue w-12;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 20px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+}
